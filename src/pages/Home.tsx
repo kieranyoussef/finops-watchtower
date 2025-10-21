@@ -95,17 +95,24 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-6 py-4">
-          <h1 className="text-2xl font-bold text-foreground">FinOps Watchtower</h1>
-          <p className="text-sm text-muted-foreground">Financial operations monitoring and analysis</p>
+      <header className="border-b border-border/50 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg">
+              FW
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">FinOps Watchtower</h1>
+              <p className="text-sm text-muted-foreground">Financial operations monitoring and analysis</p>
+            </div>
+          </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-6 py-8 space-y-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>New Analysis Run</CardTitle>
+      <main className="container mx-auto px-6 py-8 space-y-8 max-w-7xl">
+        <Card className="border-border/50 shadow-lg shadow-primary/5">
+          <CardHeader className="space-y-2">
+            <CardTitle className="text-xl">New Analysis Run</CardTitle>
             <CardDescription>Upload a CSV file or paste JSON data to analyze</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -183,9 +190,9 @@ const Home = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Runs</CardTitle>
+        <Card className="border-border/50 shadow-lg shadow-primary/5">
+          <CardHeader className="space-y-2">
+            <CardTitle className="text-xl">Recent Runs</CardTitle>
             <CardDescription>View and export your analysis runs</CardDescription>
           </CardHeader>
           <CardContent>
@@ -218,7 +225,7 @@ const Home = () => {
                         <TableCell>{run.rowCount || 0}</TableCell>
                         <TableCell>
                           {run.explain ? (
-                            <Badge variant="secondary">Yes</Badge>
+                            <Badge variant="secondary" className="bg-accent/20 text-accent border-accent/30">Yes</Badge>
                           ) : (
                             <span className="text-muted-foreground">No</span>
                           )}
@@ -227,7 +234,7 @@ const Home = () => {
                           <div className="flex gap-1 flex-wrap">
                             {run.coverage && run.coverage.length > 0 ? (
                               run.coverage.map((key) => (
-                                <Badge key={key} variant="outline" className="text-xs">
+                                <Badge key={key} variant="outline" className="text-xs bg-primary/10 border-primary/30">
                                   {key}
                                 </Badge>
                               ))

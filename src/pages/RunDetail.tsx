@@ -60,9 +60,9 @@ const RunDetail = () => {
   if (error || !run) {
     return (
       <div className="min-h-screen bg-background">
-        <header className="border-b border-border bg-card">
-          <div className="container mx-auto px-6 py-4">
-            <Button variant="ghost" onClick={() => navigate("/")} className="mb-2">
+        <header className="border-b border-border/50 bg-card/50 backdrop-blur-md">
+          <div className="container mx-auto px-6 py-6">
+            <Button variant="ghost" onClick={() => navigate("/")} className="mb-2 hover:bg-primary/10">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back
             </Button>
@@ -86,22 +86,22 @@ const RunDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-6 py-4">
-          <Button variant="ghost" onClick={() => navigate("/")} className="mb-2">
+      <header className="border-b border-border/50 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-6">
+          <Button variant="ghost" onClick={() => navigate("/")} className="mb-4 hover:bg-primary/10">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to runs
           </Button>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <h1 className="text-2xl font-bold text-foreground">
-                Run <span className="font-mono text-primary">{shortId}</span>
+                Run <span className="font-mono text-primary bg-primary/10 px-2 py-1 rounded">{shortId}</span>
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mt-1">
                 Created {new Date(run.createdAt).toLocaleString()}
               </p>
             </div>
-            <Button onClick={handleExport}>
+            <Button onClick={handleExport} className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
               <Download className="w-4 h-4 mr-2" />
               Export CSV
             </Button>
@@ -109,9 +109,9 @@ const RunDetail = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-6 py-8 space-y-6">
+      <main className="container mx-auto px-6 py-8 space-y-6 max-w-7xl">
         {run.explain && run.explanation && (
-          <Card className="border-accent/20 bg-accent/5">
+          <Card className="border-accent/30 bg-gradient-to-br from-accent/10 to-accent/5 shadow-lg shadow-accent/10">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-accent">
                 <Sparkles className="w-5 h-5" />
@@ -120,14 +120,14 @@ const RunDetail = () => {
               <CardDescription>Natural language summary of findings</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-foreground whitespace-pre-wrap">{run.explanation}</p>
+              <p className="text-foreground whitespace-pre-wrap leading-relaxed">{run.explanation}</p>
             </CardContent>
           </Card>
         )}
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Findings</CardTitle>
+        <Card className="border-border/50 shadow-lg shadow-primary/5">
+          <CardHeader className="space-y-2">
+            <CardTitle className="text-xl">Findings</CardTitle>
             <CardDescription>
               {run.findings?.length || 0} issue{run.findings?.length !== 1 ? "s" : ""} detected
             </CardDescription>
@@ -156,7 +156,7 @@ const RunDetail = () => {
                         <TableCell>{finding.reason}</TableCell>
                         <TableCell>
                           {finding.row ? (
-                            <pre className="text-xs font-mono bg-muted p-2 rounded max-w-md overflow-x-auto">
+                            <pre className="text-xs font-mono bg-muted/50 p-3 rounded-lg border border-border/50 max-w-md overflow-x-auto">
                               {formatJson(finding.row)}
                             </pre>
                           ) : (
