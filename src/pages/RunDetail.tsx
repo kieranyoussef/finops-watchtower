@@ -86,22 +86,22 @@ const RunDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border/50 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-border/50 bg-card/50 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-primary/5">
         <div className="container mx-auto px-6 py-6">
-          <Button variant="ghost" onClick={() => navigate("/")} className="mb-4 hover:bg-primary/10">
+          <Button variant="ghost" onClick={() => navigate("/")} className="mb-4 hover:text-primary hover:bg-primary/10">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to runs
           </Button>
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <h1 className="text-2xl font-bold text-foreground">
-                Run <span className="font-mono text-primary bg-primary/10 px-2 py-1 rounded">{shortId}</span>
+                Run <span className="font-mono text-primary bg-gradient-to-r from-primary/20 to-accent/20 px-3 py-1 rounded border border-primary/40 shadow-lg shadow-primary/10">{shortId}</span>
               </h1>
               <p className="text-sm text-muted-foreground mt-1">
                 Created {new Date(run.createdAt).toLocaleString()}
               </p>
             </div>
-            <Button onClick={handleExport} className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
+            <Button onClick={handleExport} className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/20">
               <Download className="w-4 h-4 mr-2" />
               Export CSV
             </Button>
@@ -111,23 +111,25 @@ const RunDetail = () => {
 
       <main className="container mx-auto px-6 py-8 space-y-6 max-w-7xl">
         {run.explain && run.explanation && (
-          <Card className="border-accent/30 bg-gradient-to-br from-accent/10 to-accent/5 shadow-lg shadow-accent/10">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-accent">
-                <Sparkles className="w-5 h-5" />
+          <Card className="border-accent/40 bg-gradient-to-br from-accent/20 via-accent/10 to-primary/10 shadow-lg shadow-accent/20">
+            <CardHeader className="border-b border-accent/30">
+              <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+                <Sparkles className="w-5 h-5 text-accent" />
                 AI Explanation
               </CardTitle>
               <CardDescription>Natural language summary of findings</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <p className="text-foreground whitespace-pre-wrap leading-relaxed">{run.explanation}</p>
             </CardContent>
           </Card>
         )}
 
-        <Card className="border-border/50 shadow-lg shadow-primary/5">
-          <CardHeader className="space-y-2">
-            <CardTitle className="text-xl">Findings</CardTitle>
+        <Card className="border-primary/20 shadow-lg shadow-primary/10 bg-gradient-to-br from-card to-card/50">
+          <CardHeader className="space-y-2 border-b border-border/50">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Findings
+            </CardTitle>
             <CardDescription>
               {run.findings?.length || 0} issue{run.findings?.length !== 1 ? "s" : ""} detected
             </CardDescription>
@@ -156,7 +158,7 @@ const RunDetail = () => {
                         <TableCell>{finding.reason}</TableCell>
                         <TableCell>
                           {finding.row ? (
-                            <pre className="text-xs font-mono bg-muted/50 p-3 rounded-lg border border-border/50 max-w-md overflow-x-auto">
+                            <pre className="text-xs font-mono bg-gradient-to-br from-muted/50 to-muted/30 p-3 rounded-lg border border-primary/30 max-w-md overflow-x-auto">
                               {formatJson(finding.row)}
                             </pre>
                           ) : (

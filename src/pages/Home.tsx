@@ -95,14 +95,16 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border/50 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-border/50 bg-card/50 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-primary/5">
         <div className="container mx-auto px-6 py-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center text-primary-foreground font-bold text-lg shadow-lg shadow-primary/20">
               FW
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">FinOps Watchtower</h1>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                FinOps Watchtower
+              </h1>
               <p className="text-sm text-muted-foreground">Financial operations monitoring and analysis</p>
             </div>
           </div>
@@ -110,9 +112,11 @@ const Home = () => {
       </header>
 
       <main className="container mx-auto px-6 py-8 space-y-8 max-w-7xl">
-        <Card className="border-border/50 shadow-lg shadow-primary/5">
-          <CardHeader className="space-y-2">
-            <CardTitle className="text-xl">New Analysis Run</CardTitle>
+        <Card className="border-primary/20 shadow-lg shadow-primary/10 bg-gradient-to-br from-card to-card/50">
+          <CardHeader className="space-y-2 border-b border-border/50">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              New Analysis Run
+            </CardTitle>
             <CardDescription>Upload a CSV file or paste JSON data to analyze</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -151,7 +155,7 @@ const Home = () => {
                 <Button 
                   onClick={handleFileUpload} 
                   disabled={!file || isCreating}
-                  className="w-full"
+                  className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/20"
                 >
                   {isCreating ? (
                     <>
@@ -174,7 +178,7 @@ const Home = () => {
                 <Button 
                   onClick={handleJsonSubmit}
                   disabled={!jsonText.trim() || isCreating}
-                  className="w-full"
+                  className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/20"
                 >
                   {isCreating ? (
                     <>
@@ -190,9 +194,11 @@ const Home = () => {
           </CardContent>
         </Card>
 
-        <Card className="border-border/50 shadow-lg shadow-primary/5">
-          <CardHeader className="space-y-2">
-            <CardTitle className="text-xl">Recent Runs</CardTitle>
+        <Card className="border-primary/20 shadow-lg shadow-primary/10 bg-gradient-to-br from-card to-card/50">
+          <CardHeader className="space-y-2 border-b border-border/50">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Recent Runs
+            </CardTitle>
             <CardDescription>View and export your analysis runs</CardDescription>
           </CardHeader>
           <CardContent>
@@ -225,7 +231,9 @@ const Home = () => {
                         <TableCell>{run.rowCount || 0}</TableCell>
                         <TableCell>
                           {run.explain ? (
-                            <Badge variant="secondary" className="bg-accent/20 text-accent border-accent/30">Yes</Badge>
+                            <Badge variant="secondary" className="bg-gradient-to-r from-accent/30 to-primary/30 text-accent border-accent/40">
+                              Yes
+                            </Badge>
                           ) : (
                             <span className="text-muted-foreground">No</span>
                           )}
@@ -234,7 +242,7 @@ const Home = () => {
                           <div className="flex gap-1 flex-wrap">
                             {run.coverage && run.coverage.length > 0 ? (
                               run.coverage.map((key) => (
-                                <Badge key={key} variant="outline" className="text-xs bg-primary/10 border-primary/30">
+                                <Badge key={key} variant="outline" className="text-xs bg-primary/20 border-primary/40 text-primary">
                                   {key}
                                 </Badge>
                               ))
@@ -249,6 +257,7 @@ const Home = () => {
                               variant="ghost"
                               size="sm"
                               onClick={() => navigate(`/run/${run.id}`)}
+                              className="hover:text-primary hover:bg-primary/10"
                             >
                               <ExternalLink className="w-4 h-4 mr-1" />
                               Open
@@ -257,6 +266,7 @@ const Home = () => {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleExport(run.id)}
+                              className="hover:text-accent hover:bg-accent/10"
                             >
                               <Download className="w-4 h-4 mr-1" />
                               Export
