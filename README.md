@@ -1,4 +1,6 @@
-# Welcome to your Lovable project
+# FinOps Watchtower
+
+A frontend-only React + TypeScript application for monitoring and analyzing financial operations data.
 
 ## Project info
 
@@ -50,6 +52,47 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
+## Quick Start
+
+### Installation
+
+```sh
+npm install
+```
+
+### Environment Setup
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_URL=http://localhost:8787/api/v1
+VITE_WATCHTOWER_SECRET=dev-secret
+```
+
+### Development
+
+```sh
+npm run dev
+```
+
+The app will be available at `http://localhost:8080`
+
+## Features
+
+- **New Analysis Run**: Upload CSV files or paste JSON data for analysis
+- **AI Explanations**: Optional natural-language summaries of findings
+- **Recent Runs**: Browse and manage your analysis history
+- **Run Details**: View detailed findings with pretty-printed row data
+- **CSV Export**: Download results for any run
+
+## API Integration
+
+The app connects to your existing backend API using:
+- `VITE_API_URL`: Base URL for API endpoints
+- `VITE_WATCHTOWER_SECRET`: Authentication secret sent as `x-watchtower-secret` header
+
+All API calls are handled in `src/lib/api.ts`.
+
 ## What technologies are used for this project?
 
 This project is built with:
@@ -59,6 +102,8 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- React Query
+- React Router
 
 ## How can I deploy this project?
 
